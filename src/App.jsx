@@ -12,7 +12,7 @@ const MENU_ITEMS = [
     id: 1,
     name: "Birria Tacos",
     description: "Traditional slow-cooked beef birria served in corn tortillas with melted cheese, onions, and cilantro. Served with rich consommé for dipping.",
-    image: "https://images.unsplash.com/photo-1565299585323-38174c13a1e3?w=400&h=300&fit=crop"
+    image: "https://images.unsplash.com/photo-1613470208960-2c1d7fbe6a0f?w=400&h=300&fit=crop"
   },
   {
     id: 2,
@@ -42,7 +42,7 @@ const MENU_ITEMS = [
     id: 6,
     name: "Fajita Nachos",
     description: "Fresh tortilla chips loaded with sizzling fajita meat, melted cheese, peppers, onions, and all the classic toppings.",
-    image: "https://images.unsplash.com/photo-1582169296197-65c1b6da259c?w=400&h=300&fit=crop"
+    image: "https://images.unsplash.com/photo-1582169505219-11678ab6c493?w=400&h=300&fit=crop"
   }
 ];
 
