@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ConfirmationModal from './ConfirmationModal';
 
 const Checkout = ({ cartItems, onSubmitOrder, onBack }) => {
   const [contactInfo, setContactInfo] = useState({
@@ -8,6 +9,8 @@ const Checkout = ({ cartItems, onSubmitOrder, onBack }) => {
     phone: ''
   });
   const [errors, setErrors] = useState({});
+  const [showModal, setShowModal] = useState(false);
+  const [submittedOrderData, setSubmittedOrderData] = useState(null);
 
   const totalItems = cartItems.length;
 
@@ -45,7 +48,22 @@ const Checkout = ({ cartItems, onSubmitOrder, onBack }) => {
         contactInfo,
         orderTime: new Date().toLocaleString()
       };
-      onSubmitOrder(orderData);
+      setSubmittedOrderData(orderData);
+      setShowModal(true);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    if (submittedOrderData) {
+      onSubmitOrder(submittedOrderData);
+    }
+  };
+
+  const handleStartNewOrder = () => {
+    setShowModal(false);
+    if (submittedOrderData) {
+      onSubmitOrder(submittedOrderData);
     }
   };
 
@@ -138,6 +156,14 @@ const Checkout = ({ cartItems, onSubmitOrder, onBack }) => {
           Submit Order
         </button>
       </form>
+
+      {showModal && submittedOrderData && (
+        <ConfirmationModal
+          orderData={submittedOrderData}
+          onClose={handleCloseModal}
+          onStartNewOrder={handleStartNewOrder}
+        />
+      )}
     </div>
   );
 };
