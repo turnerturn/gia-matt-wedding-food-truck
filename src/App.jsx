@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import AddToCartModal from './AddToCartModal';
 import Cart from './Cart';
 import Checkout from './Checkout';
 import Confirmation from './Confirmation';
@@ -49,14 +50,26 @@ function App() {
   const [currentView, setCurrentView] = useState('menu'); // 'menu', 'cart', 'checkout', 'confirmation'
   const [cartItems, setCartItems] = useState([]);
   const [orderData, setOrderData] = useState(null);
+  const [modalItem, setModalItem] = useState(null);
+  const [modalAlreadyInCart, setModalAlreadyInCart] = useState(false);
 
   const addToCart = (item) => {
     const existingItem = cartItems.find(cartItem => cartItem.id === item.id);
 
     if (!existingItem) {
       setCartItems([...cartItems, { ...item }]);
+      setModalItem(item);
+      setModalAlreadyInCart(false);
+    } else {
+      setModalItem(item);
+      setModalAlreadyInCart(true);
     }
   };  // Removed quantity management since each item is limited to one per guest
+
+  const closeModal = () => {
+    setModalItem(null);
+    setModalAlreadyInCart(false);
+  };
 
   const removeFromCart = (itemId) => {
     setCartItems(cartItems.filter(item => item.id !== itemId));
@@ -160,6 +173,8 @@ function App() {
       <footer className="app-footer">
         <p>Made with ❤️ for our special day</p>
       </footer>
+
+      <AddToCartModal item={modalItem} alreadyInCart={modalAlreadyInCart} onClose={closeModal} />
     </div>
   );
 }
