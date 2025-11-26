@@ -1,9 +1,9 @@
-const ConfirmationModal = ({ orderData, onClose, onStartNewOrder }) => {
-  const generateOrderId = () => {
-    return 'WED-' + Date.now().toString().slice(-6);
-  };
+import { useMemo } from 'react';
 
-  const orderId = generateOrderId();
+const ConfirmationModal = ({ orderData, onClose, onStartNewOrder }) => {
+  const orderId = useMemo(() => {
+    return 'WED-' + Date.now().toString().slice(-6);
+  }, []);
 
   return (
     <div className="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">

@@ -53,14 +53,7 @@ const Checkout = ({ cartItems, onSubmitOrder, onBack }) => {
     }
   };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-    if (submittedOrderData) {
-      onSubmitOrder(submittedOrderData);
-    }
-  };
-
-  const handleStartNewOrder = () => {
+  const handleModalAction = () => {
     setShowModal(false);
     if (submittedOrderData) {
       onSubmitOrder(submittedOrderData);
@@ -160,8 +153,8 @@ const Checkout = ({ cartItems, onSubmitOrder, onBack }) => {
       {showModal && submittedOrderData && (
         <ConfirmationModal
           orderData={submittedOrderData}
-          onClose={handleCloseModal}
-          onStartNewOrder={handleStartNewOrder}
+          onClose={handleModalAction}
+          onStartNewOrder={handleModalAction}
         />
       )}
     </div>
